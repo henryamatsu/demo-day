@@ -1,0 +1,141 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+}
+
+header {
+  display: flex;
+  padding: 0 20px;
+  border-bottom: 5px solid;
+  height: 50px;
+  align-items: center;
+  gap: 20px;
+}
+
+main {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+}
+
+.chef-logo {
+  width: 100px;
+}
+header > .chef-logo {
+  width: unset;
+  height: 100%;
+}
+
+.profile-main {
+  position: relative;
+}
+
+.content > section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 5px solid;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 2.4rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-message {
+  color: var(--color-2);
+}
+
+/* profile page */
+
+.pizza-display {
+  border: 5px solid;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.pizza-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.button-panel > button {
+  --shadow-border: 3px solid;
+  --shadow-offset: 5px;
+}
+
+.button-panel img {
+  width: 100px;
+  pointer-events: none;
+}
+
+#order-button {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  font-size: 2.4rem;
+}
+
+.past-orders {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.past-order {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.order-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background: var(--color-1-bg);
+  opacity: 0;
+  text-align: center;
+  font-size: 4.8rem;
+  pointer-events: none;
+  transition: opacity .5s;
+}

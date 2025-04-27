@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <title>Momma Knows Pizza</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="theme-default.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" sizes="any" type="image/svg+xml" href="img/chef.svg" >
+</head>
+<body>
+
+    <main>
+        <h1>Signup</h1>
+        <img class="chef-logo" src="img/chef.svg" alt="picture of chef">
+        <% if (message.length > 0) { %>
+            <div class="error-message"><%= message %></div>
+        <% } %>
+    
+        <!-- SIGNUP FORM -->
+        <form action="/signup" method="post">
+            <label>Email</label>
+            <input type="text" name="email">
+            <label>Password</label>
+            <input type="password" name="password">
+            <button type="submit">Signup</button>
+        </form>
+    
+        <hr>
+    
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Or go <a href="/">home</a>.</p>
+    </main>    
+</body>    
+</html>
