@@ -17,6 +17,17 @@ module.exports = function(app, passport, db) {
           })
         })
     });
+  
+  // PREFERNCES SECTION =========================
+  app.get('/preferences', isLoggedIn, function(req, res) {    
+    db.collection('users').find({_id: req.user._id}).toArray((err, result) => {
+
+      if (err) return console.log(err)
+      res.render('preferences.ejs', {
+        user : result[0]
+      })
+    })
+  });
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -26,64 +37,46 @@ module.exports = function(app, passport, db) {
         res.redirect('/');
     });
 
-// pizza routes ===============================================================
-    app.put('/orderPizza', async (req, res) => {
+// User Preferences routes ===============================================================
+    app.put('/getUserData', async (req, res) => {
       try {
-        const userId = req.app.locals.ObjectId(req.body._id);
-        const user = await db.collection('users').findOne({_id: userId});
-        const pastOrders = user.local.pastOrders || [];
-        const newOrder = req.body.toppings;
-
-        if (checkForNewPizza(newOrder, pastOrders)) {
-          pastOrders.push(req.body.toppings);
-        }
-
-        if (pastOrders.length > 3) {
-          pastOrders.shift();
-        }
-          
-        await db.collection('users').findOneAndUpdate({_id:userId}, {
-          $set: {
-            "local.pastOrders": pastOrders,
-          }
-        }, {
-          sort: {_id: -1},
-          upsert: true
-        })
-
-        res.json({pastOrders});
+        const user = await db.collection('users').findOne({_id: req.user._id});
+        res.json(user);
       }
       catch (err) {
         console.log(err);
         res.send(err);
       }
-    })
+    });
 
-    app.put("/getPastOrders", async (req,res) => {
+    app.post('/updatePreferences', async (req, res) => {
       try {
-        const userId = req.app.locals.ObjectId(req.body._id);
-        const user = await db.collection('users').findOne({_id: userId});
-        const pastOrders = user.local.pastOrders || [];
+        const userId = app.locals.ObjectId(req.body._id);
   
-        res.json({pastOrders});  
+        const frequency = req.body.frequency;
+        const grade1 = req.body.grade1 ? true : false;
+        const grade2 = req.body.grade2 ? true : false;
+        const grade3 = req.body.grade3 ? true : false;
+  
+        await db.collection('users').findOneAndUpdate({_id: userId}, {
+          $set: {
+            "local.preferences.frequency": frequency,
+            "local.preferences.grades.grade1": grade1,
+            "local.preferences.grades.grade2": grade2,
+            "local.preferences.grades.grade3": grade3
+          }
+        }, {
+          sort: {_id: -1},
+          upsert: true
+        });
+  
+        res.send();  
       }
-      catch(err) {
+      catch (err) {
         console.log(err);
         res.send(err);
       }
-    });
-
-    function checkForNewPizza(newOrder, pastOrders) {
-      const orderChecker = new Set();
-
-      pastOrders.forEach(order => {
-        orderChecker.add(order.join());
-      });
-
-      return !orderChecker.has(newOrder.join());
-    }
-
-    app.get ('/getPastPizzas', async (req,res) => {})
+    }) 
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

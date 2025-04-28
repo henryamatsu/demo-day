@@ -1,54 +1,38 @@
 <!doctype html>
 <html>
 <head>
-    <title>Momma Knows Pizza</title>
+    <title>Demo Day</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="theme-default.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" sizes="any" type="image/svg+xml" href="img/chef.svg" >
+    <link rel="icon" sizes="any" type="image/svg+xml" href="img/kanji.svg" >
 </head>
-<body data-_id=<%= user._id %>>
-
+<body data-_id="<%= user._id %>">
     <header class="page-header text-center">
-        <img class="chef-logo" src="img/chef.svg" alt="picture of chef">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <img class="kanji-logo" src="img/kanji.svg" alt="picture of scroll with kanji">
+        <h1>Profile Page</h1>
+        <a href="/preferences">Preferences</a>
+        <a href="/logout">Logout</a>
     </header>
     <% if (user.local.email) { %>
     <main class="profile-main">
         <div class="content">
-            <section>
-                <h2>Customize Your Pizza!</h2>
-                <div class="pizza-display">
-                </div>
-                <div class="pizza-buttons">
-                    <div class="button-panel">
-                        <label><input id="topping-1" type="checkbox" /> Pepperoni</label>
-                        <label><input id="topping-2" type="checkbox" /> Mushrooms</label>
-                        <label><input id="topping-3" type="checkbox" /> Pineapple</label>
-                        <label><input id="topping-4" type="checkbox" /> Anchovies</label>
-                        <button id="order-button"  class="false-shadow line-shadow clickable">Order!</button>
-                    </div>        
-                </div>    
-            </section>
-            <section>
-                <h3>Past Orders</h3>
-                <div class="past-orders">
-                    <div data-index="0" class="pizza-display past-order"></div>
-                    <div data-index="1" class="pizza-display past-order"></div>
-                    <div data-index="2" class="pizza-display past-order"></div>
-                </div>
-                <div class="order-message">
-                    <img class="chef-logo" src="img/chef.svg" alt="picture of chef">
-                    <span>Your pizza is on its way!</span>
-                </div>    
-            </section>    
+            <div class="button-row">
+                <button id="sample-text-button">Sample Text</button>
+                <button id="translate-button">Translate!</button>
+            </div>
+            <div id="text-display" class="text-box">
+            </div>
+            <textarea id="text-input" class="text-box" placeholder="Insert text here!"></textarea>
         </div>
     </main>
     <% } %>
-
-
-<script src="main.js"></script>
-
+    <div id="info-popup">
+        <div class="popup-content">
+            <span>English: <span id="english-reading"></span></span>
+            <span>Hiragana: <span id="hiragana-reading"></span></span>
+        </div>
+    </div>
+    <script src="js/profile.js"></script>
 </body>
 </html>
