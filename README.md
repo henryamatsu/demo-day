@@ -2,7 +2,7 @@
 
 A user-authentication enabled app that can receive English text and translate specific words into Japanese. The goal of the app is to build it as a browser extension so it can translate text on any webpage. The idea isn't to perform comprehensive webpage translation, but to give a language learner passive exposure to a language they're trying to learn by peppering translated words into their everyday internet use. In the current version, it isn't installable as a browser extension, but instead has a page with a textarea where a user can insert text to be translated, as a demonstration of how the translation feature should work on a webpage.
 
-![demo-day](https://github.com/user-attachments/assets/f683d585-c7c7-4573-a62f-a55cba328700)
+![demo-day](https://github.com/user-attachments/assets/626c1973-c48c-451c-a680-140e069afb56)
 
 *Screenshot of the translation page*
 
